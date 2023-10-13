@@ -1,5 +1,5 @@
-import Button from '../../common/Button/Button';
-import PageTitle from '../../common/PageTitle/PageTitle';
+//import Button from '../../common/Button/Button';
+//import PageTitle from '../../common/PageTitle/PageTitle';
 import styles from './Home.module.scss'
 
 
