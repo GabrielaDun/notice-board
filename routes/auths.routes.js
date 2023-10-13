@@ -1,14 +1,14 @@
 const express = require('express')
 const router = express.Router();
 
-const AuthController = require('../controllers/ads.controller')
+const AuthController = require('../controllers/auths.controller')
 
 
-router.get('/auth/register', AuthController.getRegister );
+router.post('/register', AuthController.Register );
 
-router.post('/auth/login', AuthController.postLogin );
+router.post('/login', AuthController.Login );
 
-router.put('/departments/user', AuthController.putUser );
+router.get('/user', AuthController.User );
 
 
 module.exports = router;

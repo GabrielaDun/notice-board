@@ -1,8 +1,6 @@
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
-const formidable = require('express-formidable');
-const uniqid = require('uniqid');
 const connectToDB = require('./db');
 
 // start express server
@@ -17,23 +15,19 @@ connectToDB();
 // add middleware
 app.use(cors());
 app.use(express.json());
-app.use(formidable({ uploadDir: './public/uploads/' }, [{
-  event: 'fileBegin', // on every file upload...
-    action: (req, res, next, name, file) => {
-      const fileName = uniqid() + '.' + file.name.split('.')[1];
-      file.path = __dirname + '/public/uploads/photo_' + fileName; // ...move the file to public/uploads with unique name
-    }
-  },
-]));
+
 app.use(express.urlencoded({ extended: false }));
+
+// add routes
+app.use('/api', require('./routes/ads.routes.js'));
+app.use('/api', require('./routes/users.routes.js'));
+app.use('/auth', require('./routes/auths.routes.js'))
+
 
 // Serve static files from the React app
 app.use(express.static(path.join(__dirname, '/public')));
 app.use(express.static(path.join(__dirname, '/client/build')));
 
-// add routes
-app.use('/api', require('./routes/ads.routes'));
-app.use('/api', require('./routes/auths.routes'))
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname + '/client/build/index.html'));

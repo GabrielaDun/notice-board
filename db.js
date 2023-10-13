@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const connectToDB = () => {
 
   // connect to DB
-  mongoose.connect('mongodb://127.0.0.1:27017/photosDB', { useNewUrlParser: true, useUnifiedTopology: true });
+  mongoose.connect(`mongodb+srv://gabriela9889:${process.env.DB_PASS}@cluster1.f8rpjqw.mongodb.net/notice-board?retryWrites=true&w=majority`, { useNewUrlParser: true });  
   const db = mongoose.connection;
 
   // on success

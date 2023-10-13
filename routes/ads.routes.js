@@ -10,7 +10,7 @@ router.get('/ads/:id', AdController.getById );
 
 router.get('/ads/search/:searchPhrase', AdController.getbySearchPhase );
 
-router.post('/ads', AdController.postById );
+//router.post('/ads', AdController.postById );
 
 router.put('/ads/:id', AdController.putById );
 
