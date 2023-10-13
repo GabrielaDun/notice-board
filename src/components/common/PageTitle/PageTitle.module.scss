@@ -1,0 +1,19 @@
+@import '../../../styles/settings.scss';
+
+.title {
+    padding: 15px 0;
+    text-align: left;
+    font-size: 21px;
+    position: relative;
+    font-weight: 300;
+  }
+.title::after {
+  height: 1px;
+  width: 100px;
+  content: '';
+  position: absolute;
+  background-color: $color-dark;
+  top: 100%;
+  right: 73%;
+
+}
