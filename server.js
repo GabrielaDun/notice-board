@@ -19,7 +19,7 @@ connectToDB();
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(session({ secret: 'mnbvcxz654321', store: MongoStore.create(mongoose.connection) }))
+app.use(session({ secret: 'mnbvcxz654321', store: MongoStore.create(mongoose.connection), resave: false, saveUninitialized: false }))
 // This is used to create session. Secret helps to make our sessions more unique and less licly to be vulnerable
 
 // add routes

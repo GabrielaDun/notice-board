@@ -56,13 +56,5 @@ exports.Login = async (req, res) => {
 }
 
 exports.getUser = async (req, res) => {
-    if (req.session.login) {
-        res.send({ login: req.session.login })
-    } else {
-        res.status(401).send({ message: 'You are not authorized' })
-    }
-}
-
-exports.User = async (req, res) => {
-
+    res.send({ message: 'Yeah, you are logged in!'})
 }
