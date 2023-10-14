@@ -1,34 +1,34 @@
 const User = require('../models/User.model');
 const bcrypt = require('bcryptjs')
-const fs = require('fs')
+const fs = require('fs');
+const getImageFileType = require('../utils/getImageFileType');
 
 exports.Register = async (req, res) => {
     try {
-        const { login, password, avatar, phone } = req.body;
+        const { login, password, phone } = req.body;
+        const fileType = req.file ? await getImageFileType(req.file): 'unknown' ;
+    
 
-        if  (login && typeof login === 'string' 
-            && password && typeof password === 'string' 
-            && phone && typeof phone === 'string'
-            && avatar && typeof avatar === 'string'  ){
+        if  (login && typeof login === 'string' && password && typeof password === 'string' && req.file && ['image/png', 'image/jpeg', 'image/gif'].includes(fileType) ){
 
             const userWithLogin = await User.findOne({ login });
             if (userWithLogin) {
                 if(req.file) {
                     try{
-                        fs.unlinkSync(req.file) // we are deleting the file after bad request
+                        fs.unlinkSync(req.file.path) // we are deleting the file after bad request
                     } catch(unlinkError) {
                         console.error('Error deleting file', unlinkError)
                     }
                 }
                 return res.status(409).send({ message: 'User with this login already exists'})
             }
-            const user = await User.create({ login, password: await bcrypt.hash(password, 10), phone, avatar})
+            const user = await User.create({ login, password: await bcrypt.hash(password, 10), phone, avatar: req.file.filename})
             res.status(201).send({ message: 'User created ' + user.login})
 
         } else {
             if(req.file) {
                 try {
-                fs.unlinkSync(req.file) // we are deleting the file after bad request
+                fs.unlinkSync(req.file.path) // we are deleting the file after bad request
                 } 
                 catch (unlinkError) {
                     console.error('Error deleting file: ', unlinkError)
@@ -99,7 +99,7 @@ exports.getUser = async (req, res) => {
 exports.logOut = async (req, res) => {
     res.session.destroyed((err) => {
         if(err){
-            
+
         }
     })
 }
