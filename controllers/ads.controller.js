@@ -1,4 +1,5 @@
 const Ad = require('../models/Ad.model');
+const fs = require('fs')
 
 exports.getAll = async (req, res) => {
     try {
@@ -38,11 +39,22 @@ exports.getbySearchPhase = async (req, res) => {
 exports.postById = async (req, res) => {
 
     try {
-      const { name } = req.body;
-   
-      const newAd = new Ad({ name: name });
-      await newAd.save();
-      res.json({ message: 'OK' });
+      const { title, text, published, photo, price, location, seller } = req.body;
+      if (!title || !text || !published || !photo || !price || !location || !seller){
+        res.json({ message: 'Incomplete ad. Please try again with all required information'})
+        if(photo) {
+            try {
+            fs.unlinkSync(photo) // we are deleting the file after bad request
+            } 
+            catch (unlinkError) {
+                console.error('Error deleting file: ', unlinkError)
+            }
+        }
+      } else {
+        const newAd = new Ad({ title: title, text: text, published: published, photo: photo, price: price, location: location, seller: seller });
+        await newAd.save();
+        res.json({ message: 'OK' });
+      }
   
     } catch(err) {
       res.status(500).json({ message: err });
@@ -51,12 +63,13 @@ exports.postById = async (req, res) => {
 }
 
 exports.putById = async (req, res) => {
-    const { name } = req.body;
+    const { title, text, published, photo, price, location, seller } = req.body;
   
     try {
       const dep = await Ad.findById(req.params.id)
       if (dep) {
-        await Ad.updateOne({ _id: req.params.id }, {$set: { name: name }});
+        
+        await Ad.updateOne({ _id: req.params.id }, {$set: { title: title, text: text, published: published, photo: photo, price: price, location: location, seller: seller }});
         const newDep = await Ad.findById(req.params.id);
         res.json( { message: newDep })
       } 

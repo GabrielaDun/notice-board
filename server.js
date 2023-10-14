@@ -16,10 +16,24 @@ app.listen(process.env.PORT || 8000, () => {
 connectToDB();
 
 // add middleware
-app.use(cors());
+if(process.env.NODE_ENV !== 'production') {
+  app.use(
+    cors({
+      origin: ['http://localhost:3000'],
+      credentials: true,
+    })
+  );
+}
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(session({ secret: 'mnbvcxz654321', store: MongoStore.create(mongoose.connection), resave: false, saveUninitialized: false }))
+app.use(session({ 
+  secret: process.env.SECRET, 
+  store: MongoStore.create(mongoose.connection), 
+  resave: false, 
+  saveUninitialized: false,
+  cookie: { secure: process.env.NODE_ENV === 'production', },
+
+}))
 // This is used to create session. Secret helps to make our sessions more unique and less licly to be vulnerable
 
 // add routes

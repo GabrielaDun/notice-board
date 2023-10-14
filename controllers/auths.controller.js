@@ -95,3 +95,11 @@ exports.getUser = async (req, res) => {
         res.status(401).send({ message: "You are not authorized"})
     }
 }
+
+exports.logOut = async (req, res) => {
+    res.session.destroyed((err) => {
+        if(err){
+            
+        }
+    })
+}
