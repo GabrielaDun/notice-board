@@ -1,5 +1,6 @@
 const Ad = require('../models/Ad.model');
-const fs = require('fs')
+const fs = require('fs');
+const getImageFileType = require('../utils/getImageFileType');
 
 exports.getAll = async (req, res) => {
     try {
@@ -64,14 +65,31 @@ exports.postById = async (req, res) => {
 
 exports.putById = async (req, res) => {
     const { title, text, published, photo, price, location, seller } = req.body;
+    const fileType = req.file ? await getImageFileType(req.file): 'unknown' ;
   
     try {
-      const dep = await Ad.findById(req.params.id)
-      if (dep) {
+      const ad = await Ad.findById(req.params.id)
+      if (ad) {
+
+        if (title && text && published && price && location && seller) {
+            if ( res.file && ["image/png", "image/jpeg", "image/gif"].includes(fileType) ) {
+                    await Ad.updateOne({ _id: req.params.id }, {$set: { title: title, text: text, published: published, photo: req.file.filename, price: price, location: location, seller: seller }});
+                    fs.unlinkSync(`public/uploads/${ad/photo}`)
+                    const newAd = await Ad.findById(req.params.id);
+                    res.json( { message: newAd })
+                } else {
+                    await Ad.updateOne( {_id: req.params.id}, {$set: { title: title, text: text, published: published, photo: photo, price: price, location: location, seller: seller }} )
+                    const newAd = await Ad.findById(req.params.id);
+                    res.json( { message: newAd })
+                }
+        } else {
+            if (req.file) {
+                fs.unlinkSync(req.file.path);
+                res.status(400).send({ message: "Bad request"})
+            } else res.status(400).send({ message: 'Bas request' })
+
+        }
         
-        await Ad.updateOne({ _id: req.params.id }, {$set: { title: title, text: text, published: published, photo: photo, price: price, location: location, seller: seller }});
-        const newDep = await Ad.findById(req.params.id);
-        res.json( { message: newDep })
       } 
       else res.status(404).json({ message: 'Not found...' })
     }
