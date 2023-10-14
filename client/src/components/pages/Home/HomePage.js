@@ -3,7 +3,7 @@
 import styles from './Home.module.scss'
 
 
-const Home= () => (
+const HomePage = () => (
   <div>
     <div className={styles.container}>
         <h1>ADD YOUR AD</h1>
@@ -13,4 +13,4 @@ const Home= () => (
   </div>
 );
 
-export default Home; 
+export default HomePage; 
