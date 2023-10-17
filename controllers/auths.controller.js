@@ -1,5 +1,5 @@
 const User = require('../models/User.model');
-const bcrypt = require('bcryptjs')
+const bcrypt = require('bcryptjs');
 const fs = require('fs');
 const getImageFileType = require('../utils/getImageFileType');
 
@@ -56,14 +56,17 @@ exports.Login = async (req, res) => {
 
             const user = await User.findOne({ login })
             if(!user) {
+                console.log('No user found for login:', login);
                 res.status(400).send({ message:'Login or password are incorrect'})
             } 
             else {
                 if (bcrypt.compareSync(password, user.password)) {
-                    req.session = user;
+                    console.log('Login successful for:', login);
+                    req.session.login = user.login;
                     res.status(200).send({ message: 'Login successful' })
                 }
                 else {
+                    console.log('Password mismatch for:', login);
                     res.status(400).send({ message:'Login or password are incorrect'})
                 }
             }

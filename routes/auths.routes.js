@@ -12,3 +12,4 @@ router.get('/user', authMiddleware, AuthController.getUser );
 router.delete('/logout', AuthController.logOut );
 
 module.exports = router;
+

@@ -40,7 +40,7 @@ const RegisterPage = () => {
         }
       })
       .catch(err => {
-
+        setStatus('serverError')
       })
   }
     return (

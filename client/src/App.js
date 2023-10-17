@@ -13,25 +13,32 @@ import Header from './components/layout/Header/Header.js';
 import Footer from './components/layout/Footer/Footer.js';
 import NotFound from './components/pages/NotFound/NotFound.js';
 import RegisterPage from './components/pages/RegisterPage/RegisterPage.js';
+//import { useDispatch} from "react-redux";
 
-const App = () => (
-  <main>
-    <Container>
-      <Header />
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/ad/add" element={<AddAdPage />} />
-        <Route path="/ad/edit/:id" element={<EditAdPage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/register" element={<RegisterPage />} />
-        <Route path="/logout" element={<RegisterPage/>} />
-        <Route path="/search/:searchPhrase" element={<SearchPhrasePage />} />
-        <Route path="/page/:id" element={<SingleAdPage />} />
-        <Route path="/*" element={<NotFound />} />
-      </Routes>
-      <Footer />
-    </Container>
-  </main>
-);
+const App = () => {
+
+  //const dispatch = useDispatch();
+  //useEffect(() => fetchAd)
+
+  return (
+    <main>
+      <Container>
+        <Header />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/ad/add" element={<AddAdPage />} />
+          <Route path="/ad/edit/:id" element={<EditAdPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/logout" element={<RegisterPage/>} />
+          <Route path="/search/:searchPhrase" element={<SearchPhrasePage />} />
+          <Route path="/page/:id" element={<SingleAdPage />} />
+          <Route path="/*" element={<NotFound />} />
+        </Routes>
+        <Footer />
+      </Container>
+    </main>
+    )
+};
 
 export default App;
