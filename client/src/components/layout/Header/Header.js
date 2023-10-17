@@ -1,12 +1,13 @@
 //import Button from '../../common/Button/Button';
 //import PageTitle from '../../common/PageTitle/PageTitle';
 import styles from './Header.module.scss'
+import NavBar from './NavBar/NavBar';
 
 
 const Header= () => (
     <div>
       <div className={styles.container}>
-          <h1>Header</h1>
+          < NavBar />
           <div className={styles.main}>
           </div>
       </div>

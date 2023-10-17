@@ -100,9 +100,17 @@ exports.getUser = async (req, res) => {
 }
 
 exports.logOut = async (req, res) => {
-    res.session.destroyed((err) => {
-        if(err){
-
-        }
-    })
+    try {
+        req.session.destroy((err) => {
+            if(err){
+                console.log('Error');
+                res.status(500).send({ message: "Error logging out." });
+                return;
+            }
+            res.status(200).send({ message: "Logged out successfully." });
+        });
+    } catch(err) {
+        console.error("Unexpected error:", err);
+        res.status(500).send({ message: "Unexpected error logging out." });
+    }
 }
