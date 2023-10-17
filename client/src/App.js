@@ -13,11 +13,16 @@ import Header from './components/layout/Header/Header.js';
 import Footer from './components/layout/Footer/Footer.js';
 import NotFound from './components/pages/NotFound/NotFound.js';
 import RegisterPage from './components/pages/RegisterPage/RegisterPage.js';
-import { logIn } from './redux/userRedux.js';
 import { useDispatch} from "react-redux";
 import Logout from './components/pages/Logout/Logout.js';
+import { fetchAd } from './redux/adsRedux.js';
+import { useEffect } from 'react';
 
 const App = () => {
+
+  const dispatch = useDispatch();
+
+  useEffect(() => fetchAd(dispatch), [dispatch]);
 
   return (
     <main>
