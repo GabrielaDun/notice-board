@@ -1,10 +1,9 @@
 import Button from '../../common/Button/Button';
 import PageTitle from '../../common/PageTitle/PageTitle';
-//import styles from './RegisterPage.module.scss'
 import { API_URL } from '../../../config';
 import { useState } from 'react';
 
-import { Form } from "react-bootstrap";
+import { Form, Alert, Spinner } from "react-bootstrap";
 
 
 const RegisterPage = () => {
@@ -12,6 +11,7 @@ const RegisterPage = () => {
   const [password, setPassword] = useState('');
   const [phone, setPhone] = useState('');
   const [avatar, setAvatar] = useState(null);
+  const [status, setStatus] = useState(null); // "null", "loading", "success", "clientrError", "loginError"
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -25,13 +25,58 @@ const RegisterPage = () => {
       method: 'POST',
       body: fd
     }
+    setStatus('loading');
     fetch(`${API_URL}auth/register`, options)
+      .then(res => {
+        if (res.status === 201) {
+          setStatus('success');
+        } else if (res.status === 400) {
+          setStatus('clientError')
+        } else if (res.status === 409 ){
+          setStatus('loginError')
+        }
+        else {
+          setStatus('serverError');
+        }
+      })
+      .catch(err => {
+
+      })
   }
     return (
       <div >
       <PageTitle>Sing Up</PageTitle>
           <Form className="col-12 col-sm-6 mx-auto" onSubmit={handleSubmit}>
           <PageTitle>Sing Up</PageTitle>
+          {status === "success" && (
+            <Alert variant="success">
+              <Alert.Heading>Success!</Alert.Heading>
+              <p>You have been successfully registered! You can now log in </p>
+            </Alert>
+          )}
+          {status === "serverError" && (
+            <Alert variant="danger">
+              <Alert.Heading>Something went wrong...</Alert.Heading>
+              <p>Unexpected error.. Try again!</p>
+            </Alert>
+          )}
+          {status === "clientError" && (
+            <Alert variant="danger">
+              <Alert.Heading>Not enough data</Alert.Heading>
+              <p>You have to fill all the fields.</p>
+            </Alert>
+          )}
+          {status === "loginError" && (
+            <Alert variant="warning">
+              <Alert.Heading>Login already taken</Alert.Heading>
+              <p>You have to use other login.</p>
+            </Alert>
+          )}
+          {status === "loading" && (
+            <Spinner animation="border" rule="status" className="block mx-auto">
+              <span className="visually-hidden">Loading...</span>
+            </Spinner>
+          )}
             <Form.Group className="mb-3" controlId="formLogin">
               <Form.Label>Login</Form.Label>
               <Form.Control type="text" value={login} onChange={e => setLogin(e.target.value)} placeholder="Enter login" />
