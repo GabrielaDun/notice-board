@@ -1,6 +1,6 @@
 //import Button from '../../common/Button/Button';
 //import PageTitle from '../../common/PageTitle/PageTitle';
-//import styles from './Home.module.scss'
+import styles from './AddAdPage.module.scss'
 
 
 const AddAdPage= () => (

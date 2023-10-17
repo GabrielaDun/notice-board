@@ -1,16 +1,16 @@
-//import Button from '../../common/Button/Button';
+
 //import PageTitle from '../../common/PageTitle/PageTitle';
-import styles from './SingleAdPage.module.scss'
+import styles from './NotFound.module.scss'
 
 
-const SingleAdPage = () => (
+const NotFound = () => (
     <div>
       <div className={styles.container}>
-          <h1>ADD AD</h1>
+          <h1>PAGE NOT FOUND</h1>
           <div className={styles.main}>
           </div>
       </div>
     </div>
   );
   
-  export default SingleAdPage; 
+  export default NotFound; 

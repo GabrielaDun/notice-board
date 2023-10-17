@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const adSchema = new mongoose.Schema({
+const adSchema = new mongoose.Schema({ 
     title: { type: String, required: true, minLength: 10, maxLength: 50  },
     text: { type: String, required: true, minLength: 20, maxLength: 1000  },
     published: { type: String, required: true },

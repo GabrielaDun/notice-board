@@ -1,9 +1,9 @@
 //import Button from '../../common/Button/Button';
 //import PageTitle from '../../common/PageTitle/PageTitle';
-import styles from './SingleAdPage.module.scss'
+import styles from './Footer.module.scss'
 
 
-const SingleAdPage = () => (
+const Footer = () => (
     <div>
       <div className={styles.container}>
           <h1>ADD AD</h1>
@@ -13,4 +13,4 @@ const SingleAdPage = () => (
     </div>
   );
   
-  export default SingleAdPage; 
+  export default Footer; 
