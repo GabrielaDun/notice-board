@@ -1,6 +1,5 @@
 import PageTitle from '../../common/PageTitle/PageTitle';
 import EditPostForm from '../../features/EditAdForm/EditAdForm';
-import styles from './EditAdPage.module.scss'
 
 
 const EditAdPage= () => {

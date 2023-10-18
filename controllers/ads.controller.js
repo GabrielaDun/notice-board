@@ -40,27 +40,39 @@ exports.getbySearchPhase = async (req, res) => {
 exports.postById = async (req, res) => {
 
     try {
-      const { title, text, published, photo, price, location, seller } = req.body;
-      if (!title || !text || !published || !photo || !price || !location || !seller){
-        res.json({ message: 'Incomplete ad. Please try again with all required information'})
-        if(photo) {
+      const { title, text, published, price, location, seller } = req.body;
+      const fileType = req.file ? await getImageFileType(req.file): 'unknown' ;
+    
+
+        if  (title && typeof title === 'string' 
+            && text && typeof text === 'string' 
+            && req.file && ['image/png', 'image/jpeg', 'image/gif'].includes(fileType) ){
+
+  
+            const add = await Ad.create({ title, text, published, price, location, seller, photo: req.file.filename})
+            res.status(201).send({ message: 'Ad created ' + add.title})
+
+        } else {
+            if(req.file) {
+                try {
+                fs.unlinkSync(req.file.path) // we are deleting the file after bad request
+                } 
+                catch (unlinkError) {
+                    console.error('Error deleting file: ', unlinkError)
+                }
+            }
+            res.status(400).send({ message: 'Bad request' })
+        }
+    } catch(err) {
+        if (req.file) {
             try {
-            fs.unlinkSync(photo) // we are deleting the file after bad request
-            } 
-            catch (unlinkError) {
-                console.error('Error deleting file: ', unlinkError)
+                fs.unlinkSync(req.file.path); // ensure to use req.file.path
+            } catch (unlinkError) {
+                console.error('Error deleting file:', unlinkError);
             }
         }
-      } else {
-        const newAd = new Ad({ title: title, text: text, published: published, photo: photo, price: price, location: location, seller: seller });
-        await newAd.save();
-        res.json({ message: 'OK' });
-      }
-  
-    } catch(err) {
-      res.status(500).json({ message: err });
+        res.status(500).send({message: err.message})
     }
-  
 }
 
 exports.putById = async (req, res) => {

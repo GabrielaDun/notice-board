@@ -24,7 +24,7 @@ const SingleAdPage = () => {
               <img
                 className={styles.image}
                 alt={adsData.text}
-                src={`${API_URL}/uploads/${adsData.photo}`} />
+                src={`${API_URL}/ads/${adsData.photo}`} />
               <p><b>Location: </b>{adsData.location}</p>
               <p><b>Price: </b>{adsData.price}</p>
               <p><b>Published: </b>{adsData.published}</p>

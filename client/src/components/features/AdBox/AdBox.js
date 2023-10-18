@@ -13,7 +13,7 @@ const AdBox = (props) => {
             <img
                 className={styles.image}
                 alt={props.text}
-                src={`${API_URL}/uploads/${props.photo}`} />
+                src={`${API_URL}/ads/${props.photo}`} />
             <p><b>Price: </b>{`${props.price}zł`}</p>
             <p><b>Location: </b>{props.location}</p>
             <Link className={styles.button} to={'/page/'+ props._id} ><Button>Read more</Button></Link>

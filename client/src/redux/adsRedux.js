@@ -1,4 +1,6 @@
 import { API_URL } from '../config';
+import shortid from 'shortid';
+
 // selector
 export const getAllOffers = state => state.ads;
 export const getAdsById = ({ ads }, adId) => ads.find(ad => ad._id === adId);

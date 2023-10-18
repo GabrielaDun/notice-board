@@ -17,9 +17,13 @@ const PostForm = ({action, actionText, ...props}) => {
     const [published, setPublished] = useState(props.published ||'');
     const [price, setPrice] = useState (props.price ||'');
     const [location, setLocation] = useState (props.location ||'');
+    const [photo, setPhoto] = useState (null);
+    const seller = 'unbiv';
 
 
     const handleSubmit = () => {
+        console.log('POSTFORM')
+        action({title, text, published, photo, price, location, seller})
     }
 
     return (
@@ -45,17 +49,19 @@ const PostForm = ({action, actionText, ...props}) => {
                 placeholder="Enter price" 
             />
             {errors.price&&<small className="d-block form-text text-danger mt-2">Price can't be empty.</small>}
+        <Form.Group className="mb-3" controlId="Avatar">
+            <Form.Label>Avatar</Form.Label>
+            <Form.Control type="file" onChange={e => setPhoto(e.target.files[0])} />
+        </Form.Group>
         </Form.Group>
             <p>Published</p>
             <DatePicker
-                {...register("published", { required: true })}
                 value={published} 
                 selected={published}
                 onChange={(date) => setPublished(date)} 
                 type="date" 
                 className="date" 
             />
-            {errors.published && <small className="d-block form-text text-danger mt-2">Date can't be empty</small>} 
         <Form.Group>
         <Form.Label>Location</Form.Label>
           <Form.Control
