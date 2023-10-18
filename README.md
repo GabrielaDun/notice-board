@@ -1,9 +1,10 @@
-# Getting Started with Create React App
+Here is a fullstack application with registation and loggin created by me. It’s a notice-board.
+To create it I have used: 
+React, Redux, Express.js, MongoDB
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+I have also used following packages:
+- bcryptjs - for encryting password
+- express-sessions - package for facilitating handling sessions.
+- connect-mongo - package to facilitate saving session in mongoDB
+- multer - helps in handling the upload of photos

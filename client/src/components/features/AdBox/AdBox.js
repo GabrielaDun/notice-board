@@ -12,10 +12,11 @@ const AdBox = (props) => {
             <h4>{props.title}</h4>
             <img
                 className={styles.image}
-                alt={styles.text}
+                alt={props.text}
                 src={`${API_URL}/uploads/${props.photo}`} />
+            <p><b>Price: </b>{`${props.price}zł`}</p>
             <p><b>Location: </b>{props.location}</p>
-            <Link className={styles.button} to={'/page/'+ props.id} ><Button>Read more</Button></Link>
+            <Link className={styles.button} to={'/page/'+ props._id} ><Button>Read more</Button></Link>
         </div>
     )
 

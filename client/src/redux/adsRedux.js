@@ -1,7 +1,7 @@
 import { API_URL } from '../config';
 // selector
 export const getAllOffers = state => state.ads;
-export const getAdsById = ({ ads }, adId) => ads.find(ad => ad.id === adId);
+export const getAdsById = ({ ads }, adId) => ads.find(ad => ad._id === adId);
 
 //action
 const createActionName = (actionName) => `api/ads/${actionName}`;

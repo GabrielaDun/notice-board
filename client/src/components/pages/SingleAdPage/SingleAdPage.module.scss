@@ -1,0 +1,52 @@
+.page {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 50px;
+}
+
+.subpage {
+    display: flex;
+    flex-direction: row;
+
+}
+.buttons {
+    height: 20px;
+    padding: 15px;
+    margin: 10px;
+}
+
+.image {
+    object-fit: cover;
+    left: 0;
+    max-width: 200px;
+    height: 150px;
+    margin: 20px 0;
+}
+
+
+.button {
+    background-color: rgb(237, 236, 236);
+    height: 20px;
+    border-color: blue;
+    color: blue;
+    font-size: 14px;
+    padding: 15px;
+    line-height: 0.3;
+    margin: 10px ;
+    cursor: pointer;
+    font-weight: 300;
+
+}
+.delate {
+    background-color: rgb(237, 236, 236);
+    height: 20px;
+    font-size: 14px;
+    padding: 15px;
+    margin: 10px ;
+    cursor: pointer;
+    font-weight: 300;
+    line-height: 0.3;
+    border-color: red;
+    color: red;
+}
