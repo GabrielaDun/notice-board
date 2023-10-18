@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import styles from './PostForm.module.scss';
 
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
-
 import { useForm } from "react-hook-form";
 import { Form } from "react-bootstrap";
 import Button from "../../common/Button/Button";
+
+import format from 'date-fns/format';
 
 const PostForm = ({action, actionText, ...props}) => {
 
@@ -19,6 +18,7 @@ const PostForm = ({action, actionText, ...props}) => {
     const [location, setLocation] = useState (props.location ||'');
     const [photo, setPhoto] = useState (null);
     const seller = 'unbiv';
+
 
 
     const handleSubmit = () => {
@@ -54,14 +54,13 @@ const PostForm = ({action, actionText, ...props}) => {
             <Form.Control type="file" onChange={e => setPhoto(e.target.files[0])} />
         </Form.Group>
         </Form.Group>
-            <p>Published</p>
-            <DatePicker
-                value={published} 
-                selected={published}
-                onChange={(date) => setPublished(date)} 
-                type="date" 
+            <Form.Label>Published:</Form.Label>
+            <Form.Control
+                value={published}
+                onChange={e => setPublished(e.target.value)}
+                type="text" 
                 className="date" 
-            />
+/>
         <Form.Group>
         <Form.Label>Location</Form.Label>
           <Form.Control

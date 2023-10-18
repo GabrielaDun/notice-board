@@ -31,7 +31,7 @@ const adsReduces = (statePart = null, action) => {
         case ADD_AD:
             return [...statePart,{ ...action.payload, id: shortid() }];
         case EDIT_AD:
-            return statePart.map(post => post.id === action.payload.id ? {...post, ...action.payload }:post )
+            return statePart.map(post => post._id === action.payload.id ? {...post, ...action.payload }:post )
         case UPDATE_AD:
             return [...action.payload]
         default:

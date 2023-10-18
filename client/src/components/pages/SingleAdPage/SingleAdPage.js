@@ -1,9 +1,6 @@
-//import Button from '../../common/Button/Button';
-//import PageTitle from '../../common/PageTitle/PageTitle';
 import styles from './SingleAdPage.module.scss'
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router';
-//import NewModal from '../../common/Modal/Modal';
 import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
 import { Navigate } from 'react-router-dom';
@@ -35,7 +32,7 @@ const SingleAdPage = () => {
           </div>
           <div className={styles.subpage}>
               <div className={styles.buttons}>
-                  <Link to={'/post/edit/'+ id } > <Button variant="primary">Edit</Button></Link>
+                  <Link to={'/ad/edit/'+ id } > <Button variant="primary">Edit</Button></Link>
               </div>
           </div>
       </div>

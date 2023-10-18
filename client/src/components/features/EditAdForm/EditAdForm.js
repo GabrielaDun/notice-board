@@ -1,12 +1,14 @@
 import { editAd, getAdsById } from '../../../redux/adsRedux';
 import PostForm from '../PostForm/PostForm';
+import { useParams } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate, Navigate, useParams } from "react-router-dom";
+import { useNavigate, Navigate } from "react-router-dom";
 
 const EditPostForm = () => {
-    const { id } = useParams();
+    console.log('YEEYYY');
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const { id } = useParams();
     console.log(id);
 
     const pageData = useSelector(state => getAdsById(state, id));
