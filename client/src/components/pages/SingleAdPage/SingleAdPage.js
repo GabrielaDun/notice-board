@@ -28,6 +28,8 @@ const SingleAdPage = () => {
               <p><b>Location: </b>{adsData.location}</p>
               <p><b>Price: </b>{adsData.price}</p>
               <p><b>Published: </b>{adsData.published}</p>
+              <p><b>Seller: </b></p>
+              <p>{adsData.text} </p>
               <p><b>Description:</b></p>
               <p>{adsData.text} </p>
           </div>

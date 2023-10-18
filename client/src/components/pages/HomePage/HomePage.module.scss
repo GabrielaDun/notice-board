@@ -1,7 +1,18 @@
-.container {
-    margin: 100px;
-    h1 {
-        text-align: center;
-    }
+.homeContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 20px;
+    margin-bottom: 30px;
+  }
+  
+  .postsContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+  }
 
-}
+  .button {
+    text-decoration: none;
+    color: white;
+  }

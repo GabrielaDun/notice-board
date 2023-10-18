@@ -1,16 +1,18 @@
-//import Button from '../../common/Button/Button';
-//import PageTitle from '../../common/PageTitle/PageTitle';
+import PageTitle from '../../common/PageTitle/PageTitle';
+import AddPostForm from '../../features/AddPostForm/AddPostForm';
 import styles from './AddAdPage.module.scss'
 
 
-const AddAdPage= () => (
-  <div>
-    <div className={styles.container}>
-        <h1>ADD AD</h1>
-        <div className={styles.main}>
-        </div>
-    </div>
-  </div>
-);
+const AddAdPage= () => {
+  return (
+      <div>
+          <div className={styles.root}>
+              <PageTitle>Add a post</PageTitle>
+              <AddPostForm />
+          </div>
+      </div>
+
+  )
+}
 
 export default AddAdPage; 

@@ -1,16 +1,20 @@
-//import Button from '../../common/Button/Button';
-//import PageTitle from '../../common/PageTitle/PageTitle';
+import PageTitle from '../../common/PageTitle/PageTitle';
+import EditPostForm from '../../features/EditAdForm/EditAdForm';
 import styles from './EditAdPage.module.scss'
 
 
-const EditAdPage= () => (
-    <div>
-      <div className={styles.container}>
-          <h1>ADD AD</h1>
-          <div className={styles.main}>
-          </div>
-      </div>
-    </div>
-  );
+const EditAdPage= () => {
+    const { id } = useParams();
+    console.log(id);
+    return (
+        <div>
+            <div className={styles.root}>
+                <PageTitle>Edit a post</PageTitle>
+                <EditPostForm />
+            </div>
+        </div>
+
+    )
+}
   
   export default EditAdPage; 
