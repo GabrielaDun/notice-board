@@ -15,7 +15,7 @@ const Ads = () => {
         <Row xs={1} md={2} lg={3} xl={4} className="g-4">
             {ads.map(ad => (
                 <Col key={ad.id}>
-                    <AdBox {...ad} />
+                    <AdBox key={ad.id} {...ad} />
                 </Col>
             ))}
 

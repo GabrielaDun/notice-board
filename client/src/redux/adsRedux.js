@@ -1,9 +1,10 @@
+import { API_URL } from '../config';
 // selector
 export const getAllOffers = state => state.ads;
 export const getAdsById = ({ ads }, adId) => ads.find(ad => ad.id === adId);
 
 //action
-const createActionName = (actionName) => `app/ads/${actionName}`;
+const createActionName = (actionName) => `api/ads/${actionName}`;
 const DELETE_AD = createActionName('DELETE_AD')
 const ADD_AD = createActionName('ADD_AD')
 const EDIT_AD = createActionName('EDIT_AD')
@@ -16,7 +17,7 @@ export const editAd = payload => ({type: EDIT_AD, payload});
 export const updateAd = payload => ({type: UPDATE_AD, payload});
 
 export const fetchAd = (dispatch) => {
-  fetch('http://localhost:3000/api/ads')
+  fetch(`${API_URL}/api/ads`)
   .then(res => res.json())
   .then(ads => dispatch(updateAd(ads)))
 };

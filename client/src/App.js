@@ -32,11 +32,11 @@ const App = () => {
           <Route path="/" element={<HomePage />} />
           <Route path="/ad/add" element={<AddAdPage />} />
           <Route path="/ad/edit/:id" element={<EditAdPage />} />
+          <Route path="/page/:id" element={<SingleAdPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/logout" element={< Logout/>} />
           <Route path="/search/:searchPhrase" element={<SearchPhrasePage />} />
-          <Route path="/page/:id" element={<SingleAdPage />} />
           <Route path="/*" element={<NotFound />} />
         </Routes>
         <Footer />
