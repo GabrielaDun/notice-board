@@ -3,6 +3,7 @@ import PostForm from '../PostForm/PostForm';
 import { useParams } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, Navigate } from "react-router-dom";
+import { API_URL } from '../../../config';
 
 const EditPostForm = () => {
     console.log('YEEYYY');
@@ -15,6 +16,35 @@ const EditPostForm = () => {
     console.log(pageData);
 
     const handleSubmit = ad => {
+        const fd = new FormData()
+        fd.append('title', ad.title);
+        fd.append('text', ad.text)
+        fd.append('published', ad.published)
+        fd.append('photo', ad.photo)
+        fd.append('price', ad.price)
+        fd.append('location', ad.location)
+        fd.append('seller', 'seller')
+
+        const options = {
+        method: 'PUT',
+        body: fd
+        }
+        fetch(`${API_URL}/api/ads/${id}`, options)
+        .then(res => {
+            if (res.status === 201) {
+            console.log('Success')
+            } else if (res.status === 400) {
+            console.log('Status 400')
+            } else if (res.status === 409 ){
+            console.log('Status 409')
+            }
+            else {
+            console.log('Status 500')
+            }
+        })
+        .catch(err => {
+            console.log('Server Error', err)
+        })
         dispatch(editAd({...ad, id}));
         navigate('/')
     }

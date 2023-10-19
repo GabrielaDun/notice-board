@@ -1,7 +1,10 @@
 import { Container, Nav, Navbar } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { checkIfLoggedIn } from '../../../../redux/userRedux';
 
 const NavBar = () => {
+    const isLoggedin = useSelector(checkIfLoggedIn);
     return (
         <Navbar bg="primary" variant="dark" expand="lg" className="mt-4 mb4 rounded">
             <Container>
@@ -11,12 +14,17 @@ const NavBar = () => {
                         <Nav.Link to="/" as={NavLink}>
                             Home
                         </Nav.Link>
-                        <Nav.Link to="/login" as={NavLink}>
-                            LogIn
-                        </Nav.Link>
-                        <Nav.Link to="/logout" as={NavLink}>
+                        {!isLoggedin && (
+                            <Nav.Link to="/login" as={NavLink}>
+                                LogIn
+                            </Nav.Link>
+                        )}
+                        {isLoggedin && (
+                            <Nav.Link to="/logout" as={NavLink}>
                             SignOut
-                        </Nav.Link>
+                            </Nav.Link>
+                            )
+                        }
                     </Nav>
                 </Navbar.Collapse>
             </Container>

@@ -2,11 +2,14 @@ import { addAd } from '../../../redux/adsRedux';
 import PostForm from '../PostForm/PostForm';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from "react-router-dom";
-import { useState } from 'react';
 import { API_URL } from '../../../config';
-import { Alert, Spinner } from "react-bootstrap";
+import { useSelector } from 'react-redux';
+import { takeLoginInfo } from '../../../redux/userRedux';
 
 const AddPostForm = () => {
+
+    const login = useSelector(takeLoginInfo);
+    console.log(login);
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
@@ -21,7 +24,7 @@ const AddPostForm = () => {
         fd.append('photo', ad.photo)
         fd.append('price', ad.price)
         fd.append('location', ad.location)
-        fd.append('seller', 'seller')
+        fd.append('seller', login)
 
         const options = {
         method: 'POST',
@@ -41,7 +44,7 @@ const AddPostForm = () => {
             }
         })
         .catch(err => {
-            setStatus('serverError')
+            console.log('Server Error', err)
         })
         dispatch(addAd(ad));
         navigate('/')
