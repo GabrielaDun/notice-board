@@ -12,7 +12,7 @@ router.get('/ads/search/:searchPhrase', AdController.getbySearchPhase );
 
 router.post('/ads', adsimageUpload.single('photo'), AdController.postById );
 
-router.put('/ads/:id', AdController.putById );
+router.put('/ads/:id', adsimageUpload.single('photo'), AdController.putById );
 
 router.delete('/ads/:id', AdController.deleteById );
 

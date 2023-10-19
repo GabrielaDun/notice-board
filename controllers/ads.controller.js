@@ -77,14 +77,16 @@ exports.postById = async (req, res) => {
 
 exports.putById = async (req, res) => {
     const { title, text, published, photo, price, location, seller } = req.body;
+    console.log(req.body);
     const fileType = req.file ? await getImageFileType(req.file): 'unknown' ;
   
     try {
       const ad = await Ad.findById(req.params.id)
       if (ad) {
+        console.log(title, text, location, seller, price, published)
 
         if (title && text && published && price && location && seller) {
-            if ( res.file && ["image/png", "image/jpeg", "image/gif"].includes(fileType) ) {
+            if ( req.file && ["image/png", "image/jpeg", "image/gif"].includes(fileType) ) {
                     await Ad.updateOne({ _id: req.params.id }, {$set: { title: title, text: text, published: published, photo: req.file.filename, price: price, location: location, seller: seller }});
                     fs.unlinkSync(`public/uploads/${ad/photo}`)
                     const newAd = await Ad.findById(req.params.id);

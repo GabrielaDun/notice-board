@@ -6,7 +6,6 @@ import { useNavigate, Navigate } from "react-router-dom";
 import { API_URL } from '../../../config';
 
 const EditPostForm = () => {
-    console.log('YEEYYY');
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const { id } = useParams();
@@ -31,22 +30,22 @@ const EditPostForm = () => {
         }
         fetch(`${API_URL}/api/ads/${id}`, options)
         .then(res => {
-            if (res.status === 201) {
-            console.log('Success')
+            if (res.status === 200) {
+                dispatch(editAd({...ad, id}));
+                navigate('/')
+                console.log('Success')
             } else if (res.status === 400) {
-            console.log('Status 400')
+                console.log('Status 400')
             } else if (res.status === 409 ){
-            console.log('Status 409')
+                console.log('Status 409')
             }
             else {
-            console.log('Status 500')
+                console.log('Status 500')
             }
         })
         .catch(err => {
             console.log('Server Error', err)
         })
-        dispatch(editAd({...ad, id}));
-        navigate('/')
     }
     if (!pageData) return <Navigate to="/" />
     else return (
