@@ -13,6 +13,7 @@ const SingleAdPage = () => {
   const { id } = useParams();
   console.log(id);
   const adsData = useSelector(state => getAdsById(state, id));
+  console.log(adsData);
 
   const userLogin = useSelector( takeLoginInfo );
   const permitInfo = useSelector(state => getEditPermit(state, adsData.seller));
@@ -31,7 +32,6 @@ const SingleAdPage = () => {
               <p><b>Price: </b>{adsData.price}</p>
               <p><b>Published: </b>{adsData.published}</p>
               <p><b>Seller: </b>{adsData.seller}</p>
-              <p>{adsData.text} </p>
               <p><b>Description:</b></p>
               <p>{adsData.text} </p>
           </div>

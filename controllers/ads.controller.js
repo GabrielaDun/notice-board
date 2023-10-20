@@ -4,7 +4,8 @@ const getImageFileType = require('../utils/getImageFileType');
 
 exports.getAll = async (req, res) => {
     try {
-      res.json(await Ad.find()); 
+      const ads = await Ad.find();
+      res.json(ads);
     }
     catch(err) {
       res.status(500).json({ message: err });
@@ -13,9 +14,13 @@ exports.getAll = async (req, res) => {
 
 exports.getById = async (req, res) => {
     try {
-      const dep = await Ad.findById(req.params.id);
-      if (!dep) res.status(404).json({ message: 'Not found' })
-      else res.json(dep)
+      const ad = await Ad.findById(req.params.id);
+      console.log(ad)
+      if (!ad) {
+        res.status(404).json({ message: 'Not found' })
+      } else {
+        res.json(ad)
+      }
     }
     catch(err) {
       res.status(500).json({ message: err })

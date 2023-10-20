@@ -24,10 +24,10 @@ export const fetchAd = (dispatch) => {
   .then(ads => dispatch(uploadAd(ads)))
 };
 
-const adsReduces = (statePart = null, action) => {
+const adsReduces = (statePart = [null], action) => {
     switch (action.type) {
         case DELETE_AD:
-            return [...statePart.filter(posts => posts.id !== action.payload)];
+            return [...statePart.filter(posts => posts._id !== action.payload)];
         case ADD_AD:
             return [...statePart,{ ...action.payload, id: shortid() }];
         case EDIT_AD:
