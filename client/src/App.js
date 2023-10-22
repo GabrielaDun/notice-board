@@ -6,7 +6,7 @@ import HomePage from './components/pages/HomePage/HomePage.js';
 import AddAdPage from './components/pages/AddAdPage/AddAdPage.js';
 import EditAdPage from './components/pages/EditAdPage/EditAdPage.js';
 import LoginPage from './components/pages/LoginPage/LoginPage.js';
-import SearchPhrasePage from './components/pages/SearchPhrasePage/SearcgPhrasePage.js';
+import SearchPhrasePage from './components/pages/SearchPhrasePage/SearchPhrasePage.js';
 import SingleAdPage from './components/pages/SingleAdPage/SingleAdPage.js';
 import { Container } from 'react-bootstrap';
 import Header from './components/layout/Header/Header.js';

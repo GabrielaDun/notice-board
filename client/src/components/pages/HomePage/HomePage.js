@@ -5,6 +5,7 @@ import { Link} from 'react-router-dom';
 import Button from '../../common/Button/Button';
 import { useSelector } from 'react-redux';
 import { checkIfLoggedIn } from '../../../redux/userRedux';
+import Search from '../../features/Search/Search';
 
 
 const HomePage = () => {
@@ -19,6 +20,7 @@ const HomePage = () => {
             </Link>
           )}
       </div>
+      <Search />
       <Ads/>
   </div>
   )

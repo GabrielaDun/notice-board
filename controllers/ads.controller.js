@@ -33,9 +33,9 @@ exports.getById = async (req, res) => {
 exports.getbySearchPhase = async (req, res) => {
     try {
       const phase = req.params.phase
-      const dep = await Ad.findAll({title: {$regex: phase }});
-      if (!dep) res.status(404).json({ message: 'Not found' })
-      else res.json(dep)
+      const result = await Ad.findAll({title: {$regex: phase, $options: 'i'  }});
+      if (!result) res.status(404).json({ message: 'Not found' })
+      else res.json(result);
     }
     catch(err) {
       res.status(500).json({ message: err })
