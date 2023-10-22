@@ -1,11 +1,8 @@
 
-//import PageTitle from '../../common/PageTitle/PageTitle';
-import styles from './NotFound.module.scss'
-
 
 const NotFound = () => (
     <div>
-      <div className={styles.container}>
+      <div>
           <h1>PAGE NOT FOUND</h1>
           <div className={styles.main}>
           </div>

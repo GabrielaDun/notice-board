@@ -16,12 +16,17 @@ const NavBar = () => {
                         </Nav.Link>
                         {!isLoggedin && (
                             <Nav.Link to="/login" as={NavLink}>
-                                LogIn
+                                Log In
+                            </Nav.Link>
+                        )}
+                         {!isLoggedin && (
+                            <Nav.Link to="/register" as={NavLink}>
+                                Register
                             </Nav.Link>
                         )}
                         {isLoggedin && (
                             <Nav.Link to="/logout" as={NavLink}>
-                            SignOut
+                                Sign Out
                             </Nav.Link>
                             )
                         }
